@@ -3,8 +3,8 @@
 #include <WiFi.h>
 #include "Arduino.h"
 
-const char* ssid = "DELTA_FIBRA_BRASIL";
-const char* password = "jaburu@01012009?";
+const char* ssid = "#";
+const char* password = "#";
 
 int capture_interval = 200000; // Millisegundo 200000 = 3.33 minutos
 const char *post_url = "http://144.22.157.19/upload.php"; // Local onde será salvo as imagens
