@@ -167,8 +167,6 @@ static esp_err_t take_send_photo()
   esp_camera_fb_return(fb);
 }
 
-
-
 void loop()
 {
   // TODO check Wifi and reconnect if needed
