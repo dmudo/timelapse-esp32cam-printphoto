@@ -7,7 +7,7 @@ const char* ssid = "#";
 const char* password = "#";
 
 int capture_interval = 200000; // Millisegundo 200000 = 3.33 minutos
-const char *post_url = "http://144.22.157.19/upload.php"; // Local onde será salvo as imagens
+const char *post_url = "<ip do servidor>/recebePhoto.php"; // Local onde será salvo as imagens
 
 bool internet_connected = false;
 long current_millis;
