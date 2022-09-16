@@ -11,27 +11,61 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/blueimp-gallery.min.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="js/blueimp-gallery.min.js"></script>
   
 </head>
 
 <body>
-<script type="text/javascript">    
-$("#imagem").bind('mouseover',function(){
-    
-    $(this).animate({height:"900px",width:"900px"});
+<script type="text/javascript">   
 
-});
-$("#imagem").bind('mouseout',function(){
- 
-    $(this).animate({height:"743px",width:"495px"});
-   
-});   
+ document.getElementById('links').onclick = function (event) {
+    event = event || window.event
+    var target = event.target || event.srcElement
+    var link = target.src ? target.parentNode : target
+    var options = { index: link, event: event }
+    var links = this.getElementsByTagName('a')
+    blueimp.Gallery(links, options)
+  }  
 
 </script>
 
 <h1>FOTOS COM INFORMAÇÃO DO CLIMA / GOIÂNIA - GOIAS - BRASIL</h1>
+
+<div
+  
+  <div class="slides" aria-live="polite"></div>
+  <h3 class="title"></h3>
+  <a
+    class="prev"
+    aria-controls="blueimp-gallery"
+    aria-label="previous slide"
+    aria-keyshortcuts="ArrowLeft"
+  ></a>
+  <a
+    class="next"
+    aria-controls="blueimp-gallery"
+    aria-label="next slide"
+    aria-keyshortcuts="ArrowRight"
+  ></a>
+  <a
+    class="close"
+    aria-controls="blueimp-gallery"
+    aria-label="close"
+    aria-keyshortcuts="Escape"
+  ></a>
+  <a
+    class="play-pause"
+    aria-controls="blueimp-gallery"
+    aria-label="play slideshow"
+    aria-keyshortcuts="Space"
+    aria-pressed="false"
+    role="button"
+  ></a>
+  <ol class="indicator"></ol>
+</div>
 
 <section>
     <div class="container">
@@ -45,8 +79,13 @@ $("#imagem").bind('mouseout',function(){
             <ul class="carousel__slides">
                 <li class="carousel__slide">
                     <figure>
-                        <div> 
-                            <img src="http://localhost:9090/timelapse-esp32cam-printphoto/uploads/pronta.jpg" id="imagem" >
+                        <div 
+                        id="blueimp-gallery"
+                        class="blueimp-gallery blueimp-gallery-controls"
+                        aria-label="image gallery"
+                        aria-modal="true"
+                        role="dialog"> 
+                            <img src="http://localhost:9090/timelapse-esp32cam-printphoto/uploads/pronta.jpg" alt="" >
                         </div>
                         <figcaption>
                             Foto tirada a cada 3.33 minutos, na seguinte <a href="https://goo.gl/maps/WwV8d8ra4ckK27PZA" target="_blank" >localização.</a></p>
