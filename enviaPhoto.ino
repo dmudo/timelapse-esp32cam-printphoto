@@ -7,7 +7,7 @@ const char* ssid = "#";
 const char* password = "#";
 
 int capture_interval = 200000; // Millisegundo 200000 = 3.33 minutos
-const char *post_url = "<ip do servidor>/recebePhoto.php"; // Local onde será salvo as imagens
+const char *post_url = "http://144.22.157.19/upload.php"; // Local onde será salvo as imagens
 
 bool internet_connected = false;
 long current_millis;
@@ -31,8 +31,7 @@ long last_capture_millis = 0;
 #define HREF_GPIO_NUM     23
 #define PCLK_GPIO_NUM     22
 
-void setup()
-{
+void setup() {
   Serial.begin(115200);
 
   if (init_wifi()) { // Connected to WiFi
@@ -81,8 +80,7 @@ void setup()
   }
 }
 
-bool init_wifi()
-{
+bool init_wifi() {
   int connAttempts = 0;
   Serial.println("\r\nConnecting to: " + String(ssid));
   WiFi.begin(ssid, password);
@@ -96,8 +94,7 @@ bool init_wifi()
 }
 
 
-esp_err_t _http_event_handler(esp_http_client_event_t *evt)
-{
+esp_err_t _http_event_handler(esp_http_client_event_t *evt) {
   switch (evt->event_id) {
     case HTTP_EVENT_ERROR:
       Serial.println("HTTP_EVENT_ERROR");
@@ -131,8 +128,7 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt)
   return ESP_OK;
 }
 
-static esp_err_t take_send_photo()
-{
+static esp_err_t take_send_photo() {
   Serial.println("Taking picture...");
   camera_fb_t * fb = NULL;
   esp_err_t res = ESP_OK;
@@ -167,8 +163,7 @@ static esp_err_t take_send_photo()
   esp_camera_fb_return(fb);
 }
 
-void loop()
-{
+void loop(){
   // TODO check Wifi and reconnect if needed
   
   current_millis = millis();
