@@ -1,13 +1,21 @@
+/*
+  D'angelo Martins - dangelomartins@gmail.com
+  Detalhes completos e funcionamento deste projeto, você pode acompanhar em fototempo.ml
+*/
+
+// Bibliotecas 
 #include "esp_http_client.h"
 #include "esp_camera.h"
 #include <WiFi.h>
 #include "Arduino.h"
 
-const char* ssid = "#";
-const char* password = "#";
+// Função de conecção com a rede WiFi 2.4
+const char* ssid = "#####";
+const char* password = "#####";
 
-int capture_interval = 200000; // Millisegundo 200000 = 3.33 minutos
-const char *post_url = "http://144.22.157.19/upload.php"; // Local onde será salvo as imagens
+// Função enviar dados diretamente para o caminho no servidor
+int capture_interval = 200000; // Millisegundo 2001111111111000 = 3.33 minutos
+const char *post_url = "#####"; // Script para receber as imagens.
 
 bool internet_connected = false;
 long current_millis;
@@ -31,12 +39,15 @@ long last_capture_millis = 0;
 #define HREF_GPIO_NUM     23
 #define PCLK_GPIO_NUM     22
 
-void setup() {
+void setup()
+{
   Serial.begin(115200);
+ 
+ // Conecta no WIFI
 
-  if (init_wifi()) { // Connected to WiFi
+  if (init_wifi()) {
     internet_connected = true;
-    Serial.println("Internet connected");
+    Serial.println("Conectado ao Internet");
   }
 
   camera_config_t config;
@@ -61,7 +72,7 @@ void setup() {
   config.xclk_freq_hz = 20000000;
   config.pixel_format = PIXFORMAT_JPEG;
  
-  //init with high specs to pre-allocate larger buffers
+//Inicia com a maior especificações pré-alocado em buffer - Qualidade da Foto tirada pela EspCam
   if (psramFound()) {
     config.frame_size = FRAMESIZE_UXGA;
     config.jpeg_quality = 10;
@@ -72,15 +83,16 @@ void setup() {
     config.fb_count = 1;
   }
 
-  // camera init
+//Inicia camera
   esp_err_t err = esp_camera_init(&config);
   if (err != ESP_OK) {
-    Serial.printf("Camera init failed with error 0x%x", err);
+    Serial.printf("Falha na inicialização da câmera com erro", err);
     return;
   }
 }
 
-bool init_wifi() {
+bool init_wifi()
+{
   int connAttempts = 0;
   Serial.println("\r\nConnecting to: " + String(ssid));
   WiFi.begin(ssid, password);
@@ -93,8 +105,8 @@ bool init_wifi() {
   return true;
 }
 
-
-esp_err_t _http_event_handler(esp_http_client_event_t *evt) {
+esp_err_t _http_event_handler(esp_http_client_event_t *evt)
+{
   switch (evt->event_id) {
     case HTTP_EVENT_ERROR:
       Serial.println("HTTP_EVENT_ERROR");
@@ -113,7 +125,7 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt) {
       Serial.println();
       Serial.printf("HTTP_EVENT_ON_DATA, len=%d", evt->data_len);
       if (!esp_http_client_is_chunked_response(evt->client)) {
-        // Write out data
+        // Escreva dados
         // printf("%.*s", evt->data_len, (char*)evt->data);
       }
       break;
@@ -128,16 +140,17 @@ esp_err_t _http_event_handler(esp_http_client_event_t *evt) {
   return ESP_OK;
 }
 
-static esp_err_t take_send_photo() {
-  Serial.println("Taking picture...");
+static esp_err_t take_send_photo()
+{
+  Serial.println("Tirando Foto...");
   camera_fb_t * fb = NULL;
   esp_err_t res = ESP_OK;
 
   fb = esp_camera_fb_get();
   if (!fb) {
-    Serial.println("Camera capture failed");
+    Serial.println("Falha na Captura da Camera");
     return ESP_FAIL;
-  }
+}
 
   esp_http_client_handle_t http_client;
   
@@ -157,18 +170,18 @@ static esp_err_t take_send_photo() {
     Serial.print("esp_http_client_get_status_code: ");
     Serial.println(esp_http_client_get_status_code(http_client));
   }
-
   esp_http_client_cleanup(http_client);
 
   esp_camera_fb_return(fb);
+ 
 }
 
-void loop(){
-  // TODO check Wifi and reconnect if needed
-  
+void loop()
+{
+  //Verifique o Wifi e reconecte se necessário
   current_millis = millis();
   if (current_millis - last_capture_millis > capture_interval) { // Take another picture
     last_capture_millis = millis();
     take_send_photo();
   }
-}
+}  
