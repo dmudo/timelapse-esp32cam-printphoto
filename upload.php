@@ -13,16 +13,16 @@ $font1 = dirname(__FILE__) . "/segoe.otf";
 
 
 $nome = 'Goiânia';
-
 $date = date('d-m-Y H:i:s');
-
 $link = 'fototempo.ml';
+$temp = 'Temp %error%';
+$Umid = 'Umid %error%';
 
-
-imagettftext($im, 55, 0, 180, 1043, $white, $font, $nome );
-imagettftext($im, 30, 0, 180, 1084, $white, $font, $date );
-imagettftext($im, 30, 0, 180, 1122, $white, $font, $link );
-
+imagettftext($im, 45, 0, 180, 1002, $white, $font, $nome );
+imagettftext($im, 30, 0, 180, 1043, $white, $font, $date );
+imagettftext($im, 30, 0, 180, 1084, $white, $font, $temp );
+imagettftext($im, 30, 0, 180, 1122, $white, $font, $Umid );
+imagettftext($im, 30, 0, 180, 1163, $white, $font, $link );
 
 // Chega uma imagem e replica 7x a cada 30 segundos para criar o carrosel no site
 imagejpeg( $im, 'uploads/pronta'.'.jpg', 100 );
