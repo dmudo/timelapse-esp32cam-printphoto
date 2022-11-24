@@ -13,6 +13,15 @@ Usando a placa de desenvolvimento ESP32-CAM, a aplicação consiste em tirar uma
  - Cabo USB.
 
 
- 
+###  ✔ Dados BD 
 
+CREATE TABLE SensorData (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    sensor VARCHAR(30) NOT NULL,
+    location VARCHAR(30) NOT NULL,
+    value1 VARCHAR(10),
+    value2 VARCHAR(10),
+    value3 VARCHAR(10),
+    reading_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)
  
