@@ -25,3 +25,8 @@ CREATE TABLE SensorData (
     reading_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )
  
+###  ✔ API Advisor Clima Tempo
+
+https://github.com/adinan-cenci/climatempo-api
+
+https://advisor.climatempo.com.br/
