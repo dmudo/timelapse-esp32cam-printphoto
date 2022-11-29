@@ -1,6 +1,6 @@
 <?php
 
-include('http://localhost:9090/timelapse-esp32cam-printphoto/classeTempo.php'); // This has all the code.
+include('classeTempo.php'); // This has all the code.
 
 $w = new Weather('50.799995', '-1.065545'); // Input the Latitude and Longitude
 echo $w->getLocation()->getWeather()->sayHuman();
