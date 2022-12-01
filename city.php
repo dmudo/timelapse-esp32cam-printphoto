@@ -1,63 +1,21 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-/*-----------------------------*/
+use adinacenci\Climate\Climatempo.php;
 
-require '/timelapse-esp32cam-printphoto/vendor/composer/autoload.php';
+$token      = 'eb390158abf1a2807fc8deaec4b9c4c0';
+$id         = 3477; /*São paulo*/
 
-use AdinanCenci\Climatempo\City\Search;
+$climatempo = new Climatempo($token);
+$previsao   = $climatempo->fifteenDays($id);
 
-/*-----------------------------*/
-
-$token      = 'insert-your-token-here';
-$search = new Search('belo horizonte');
-$bh     = $search->find()[0];
-
-/*-----------------------------*/
-
-require 'resources/header.html';
-
-echo 
-"<p>Here is the forecast for the citiy of $bh->name - $bh->state</p>";
-
-try {
-    $forecast = $bh->fifteenDays($token);
-} catch (Exception $e) {
-    echo '<b>Error: </b>'.$e->getMessage();
-    die();
+foreach ($previsao->days as $dia) {
+    echo 
+    "Cidade: <b>$previsao->city ($dia->date)</b>: <br>
+    Temp. mínima: $dia->minTemp °C <br>
+    Temp. máxima: $dia->maxTemp °C <br>
+    Probab. de precipitação: $dia->pop % <br>
+    Precipitação: $dia->mm mm <br>
+    Frase: $dia->textPt <hr>";
 }
 
-echo 
-'<table>
-    <tr>
-        <th>Date</th>
-        <th title="Lower temperature">Low</th>
-        <th title="Higher temperature">Hight</th>
-        <th title="Probability of precipitation">Pop</th>
-        <th title="Precipitation">MM</th>
-        <th>Icon</th>
-        <th>Phrase</th>
-    </tr>';
-
-    foreach ($forecast->days as $day) {
-        echo "
-        <tr>
-            <td> $day->dateBr </td>                
-            <td> $day->minTemp °C </td>
-            <td> $day->maxTemp °C </td>
-            <td> $day->pop % </td>
-            <td> $day->mm mm </td>
-            <td> 
-                <img width=\"50\" src=\"resources/images/$day->dawnIcon.png\" />
-                <img width=\"50\" src=\"resources/images/$day->morningIcon.png\" />
-                <img width=\"50\" src=\"resources/images/$day->dayIcon.png\" />
-                <img width=\"50\" src=\"resources/images/$day->afternoonIcon.png\" />
-                <img width=\"50\" src=\"resources/images/$day->nightIcon.png\" /> 
-            </td>
-            <td> $day->textPt </td>
-        </tr>"; 
-    }
-
-echo 
-'</table>';
+?>
