@@ -1,6 +1,17 @@
 <?php
 
-use adinacenci\Climate\Climatempo.php;
+use vendor\adinancenci\src\Climatempo\Climatempo;
+
+$token      = 'eb390158abf1a2807fc8deaec4b9c4c0';
+$locales 	= array(3477 /*São paulo*/, 5959 /*Rio de Janeiro*/, 8050 /*Fortaleza*/);
+$climatempo = new Climatempo($token);
+
+$ids 		= $climatempo->addLocalesToToken($locales);
+
+?>
+
+
+use adinacenci\Climate\Climatempo;
 
 $token      = 'eb390158abf1a2807fc8deaec4b9c4c0';
 $id         = 3477; /*São paulo*/
@@ -18,4 +29,3 @@ foreach ($previsao->days as $dia) {
     Frase: $dia->textPt <hr>";
 }
 
-?>

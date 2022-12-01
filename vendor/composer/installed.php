@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'e43a2855c2d108ab5e2d1315e9aa9e1402916fef',
+        'reference' => '6bf672617ddefe35b051ce03a545abc3811b9991',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'e43a2855c2d108ab5e2d1315e9aa9e1402916fef',
+            'reference' => '6bf672617ddefe35b051ce03a545abc3811b9991',
             'dev_requirement' => false,
         ),
         'adinan-cenci/climatempo-api' => array(
