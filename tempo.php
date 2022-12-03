@@ -1,9 +1,13 @@
-<?php
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Consumir API com file_get_contents PHP</title>
+    </head>
+    <Body>
+        <?php
+        $url = ""
+        ?>
 
-include('classeTempo.php'); // This has all the code.
-
-$w = new Weather('50.799995', '-1.065545'); // Input the Latitude and Longitude
-echo $w->getLocation()->getWeather()->sayHuman();
-// Ouput~: Portsmouth, England, PO4 8 | Partly Cloudy 4°C, Humidity: 93%, Wind: N at 8 mph
-
-?>
+    </Body>
+</html>
