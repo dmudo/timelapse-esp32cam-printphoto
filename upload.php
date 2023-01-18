@@ -10,10 +10,12 @@ $black = imagecolorallocate($im, 0, 12, 0);
 
 $font = dirname(__FILE__) . "/SegoeBold.ttf";
 $font1 = dirname(__FILE__) . "/segoe.otf";
+$font2 = dirname(__FILE__) . "/summer.ttf";
 
 $nome = 'Goiânia';
 $date = date('d-m-Y H:i:s');
 $link = 'fototempo.ml';
+$sensura = 'G';
 //$temp = ( $_GET['temp'] );
 //$Umid = ( $_GET['Umid'] );
 
@@ -22,6 +24,7 @@ imagettftext($im, 30, 0, 180, 1043, $white, $font, $date);
 //imagettftext($im, 30, 0, 180, 1084, $white, $font, $temp );
 //imagettftext($im, 30, 0, 180, 1122, $white, $font, $Umid );
 imagettftext($im, 30, 0, 180, 1083, $white, $font, $link);
+imagettftext($im, 350, 0, 0, 783, $white, $font2, $sensura);
 
 // Chega uma imagem e replica 7x a cada 30 segundos para criar o carrosel no site
 imagejpeg($im, 'uploads/pronta' . '.jpg', 100);
