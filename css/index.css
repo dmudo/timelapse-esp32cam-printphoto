@@ -6,9 +6,9 @@ body {
     Arial, sans-serif;
   -webkit-text-size-adjust: 100%;
   line-height: 1.4;
-  background: #212121;
-  color: #dedede;
   font-family: 'Roboto', sans-serif;
+  background: #af6a6a;
+  
 
 }
 
@@ -31,6 +31,10 @@ img {
   border: 0;
   vertical-align: middle;
   align-items: center;
+  border-radius: 28px;
+  box-shadow:  41px -41px 82px #bebebe,
+             -41px 41px 82px #ffffff;
+
 }
 
 h1,
